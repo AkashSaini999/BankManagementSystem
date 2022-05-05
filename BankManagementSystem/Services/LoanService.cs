@@ -3,13 +3,10 @@ using BankManagementSystem.Interface;
 using BankManagementSystem.Repository;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BankManagementSystem.Services
 {
-    public class LoanService:ILoan
+    public class LoanService : ILoan
     {
         public readonly ILogger _ilogger;
         public ILoanRepository _loanRepository;
@@ -18,17 +15,24 @@ namespace BankManagementSystem.Services
         {
             _customerRepositroy = customerRepositroy;
         }
-       public  Loan ApplyLoan(Loan loan)
+        public Loan ApplyLoan(Loan loan)
         {
-            var customer = _customerRepositroy.GetCustomerById(loan.CustomerId);
-            if(customer==null)
+            try
             {
-                _ilogger.LogError("Customer Not Found Exception");
-                throw new Exception("Customer Not Found Exception");
-
+                var customer = _customerRepositroy.GetCustomerById(loan.CustomerId);
+                if (customer == null)
+                {
+                    _ilogger.LogError("Customer Not Found Exception");
+                    throw new Exception("Customer Not Found Exception");
+                }
+                var newLoan = _loanRepository.AddLoan(loan);
+                return newLoan;
             }
-            var newLoan = _loanRepository.AddLoan(loan);
-            return newLoan;
+            catch (Exception ex)
+            {
+                _ilogger.LogError(ex.Message);
+                throw ex;
+            }
         }
     }
 }
