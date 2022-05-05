@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BankManagementSystem.Data;
 
 namespace BankManagementSystem.Interface
 {
-    public class ILoan
+    public interface ILoan
     {
+        Loan ApplyLoan(Loan loan);
     }
 }
