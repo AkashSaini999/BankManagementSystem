@@ -12,6 +12,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BankManagementSystem.Interface;
+using BankManagementSystem.Services;
+using BankManagementSystem.Repository;
+using BankManagementSystem.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BankManagementSystem
 {
@@ -34,7 +39,20 @@ namespace BankManagementSystem
             });
             services.AddControllers();
             
-            services.AddJWTTokenServices(Configuration);
+            services.AddJWTTokenServices(Configuration);            
+            services.AddTransient<IcustomerRespository, CustomerRepository>();
+            services.AddTransient<IAuthentication, AuthenticationService>();
+            services.AddTransient<ICustomer, CustomerService>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            var logger = serviceProvider.GetService<ILogger<CustomerService>>();
+            var loggerloan = serviceProvider.GetService<ILogger<LoanService>>();
+            services.AddSingleton(typeof(ILogger), logger);
+            services.AddSingleton(typeof(ILogger), loggerloan);
+
+            services.AddTransient<ILoanRepository, LoanRepository>();
+            services.AddTransient<ILoan, LoanService>();
+            services.AddDbContext<BankDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

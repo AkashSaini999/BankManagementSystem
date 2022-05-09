@@ -10,9 +10,10 @@ namespace BankManagementSystem.Services
     {        
         public readonly ILogger _ilogger;
         public IcustomerRespository _customerRepositroy;
-        public CustomerService(IcustomerRespository customerRepositroy)
+        public CustomerService(IcustomerRespository customerRepositroy, ILogger ilogger)
         {            
             _customerRepositroy = customerRepositroy;
+            _ilogger = ilogger;
         }
 
         public Customer CreateNewCustomer(Customer customer)

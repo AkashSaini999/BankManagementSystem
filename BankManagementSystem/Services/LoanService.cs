@@ -11,9 +11,12 @@ namespace BankManagementSystem.Services
         public readonly ILogger _ilogger;
         public ILoanRepository _loanRepository;
         public IcustomerRespository _customerRepositroy;
-        public LoanService(ILoanRepository loanRepository, IcustomerRespository customerRepositroy)
+        public LoanService(ILoanRepository loanRepository, IcustomerRespository customerRepositroy, ILogger ilogger)
         {
             _customerRepositroy = customerRepositroy;
+            _ilogger = ilogger;
+            _loanRepository = loanRepository;
+
         }
         public Loan ApplyLoan(Loan loan)
         {

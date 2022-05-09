@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using BankManagementSystem.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using BankManagementSystem.Helpers;
 using BankManagementSystem.Interface;
@@ -13,7 +9,8 @@ using BankManagementSystem.Data;
 
 namespace BankManagementSystem.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Authorize]
+    [Route("api/[controller]")]
     [ApiController]
     public class BankController : ControllerBase
     {
@@ -28,7 +25,7 @@ namespace BankManagementSystem.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("addcustomer")]
-        public IActionResult CreateAccount([FromBody] Customer customer)
+        public IActionResult AddCustomer([FromBody] Customer customer)
         {
             try
             {

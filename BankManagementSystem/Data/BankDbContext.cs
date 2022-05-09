@@ -1,24 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace BankManagementSystem.Data
 {
     public class BankDbContext:DbContext
     {
-        public BankDbContext()
-        {
-
-        }
-
         public BankDbContext(DbContextOptions<BankDbContext> options)
 : base(options)
         {
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -5,11 +5,9 @@ namespace BankManagementSystem.Repository
     public class LoanRepository:ILoanRepository
     {
         public readonly BankDbContext _bankDBContext;
-        public ILoanRepository _loanRepository;
-        public LoanRepository( BankDbContext bankDBContext, ILoanRepository loanRepository)
+        public LoanRepository( BankDbContext bankDBContext)
         {            
             _bankDBContext = bankDBContext;
-            _loanRepository = loanRepository;
         }
 
         public Loan AddLoan(Loan loan)

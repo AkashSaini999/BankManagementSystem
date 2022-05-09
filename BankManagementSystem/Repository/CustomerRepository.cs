@@ -7,11 +7,9 @@ namespace BankManagementSystem.Repository
     public class CustomerRepository:IcustomerRespository
     {
         public readonly BankDbContext _bankDBContext;
-        public IcustomerRespository _customerRepositroy;
-        public CustomerRepository(BankDbContext bankDBContext, IcustomerRespository customerRepositroy)
+        public CustomerRepository(BankDbContext bankDBContext)
         {
             _bankDBContext = bankDBContext;
-            _customerRepositroy = customerRepositroy;
         }
 
         public Customer AddCustomer(Customer customer)
