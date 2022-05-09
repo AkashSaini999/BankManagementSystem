@@ -45,7 +45,7 @@ namespace BankManagementSystem.Services
                     throw new Exception("Customer Not Found Exception");
                 }
                 _ilogger.LogInformation("Updating existing customer");
-                var newCustomer = _customerRepositroy.AddCustomer(customer);
+                var newCustomer = _customerRepositroy.UpdateCustomer(customer);
                 _ilogger.LogInformation("Customer data saved to db succesfully");
                 return newCustomer;
             }
