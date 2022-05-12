@@ -21,6 +21,7 @@ namespace BankManagementSystem.Services
             try
             {
                 _ilogger.LogInformation("Adding new customer");
+                customer.CreatedDate = DateTime.UtcNow;
                 var newCustomer = _customerRepositroy.AddCustomer(customer);
                 _ilogger.LogInformation("Customer data saved to db succesfully");
                 return newCustomer;
@@ -45,6 +46,7 @@ namespace BankManagementSystem.Services
                     throw new Exception("Customer Not Found Exception");
                 }
                 _ilogger.LogInformation("Updating existing customer");
+                customer.Updateddate = DateTime.UtcNow;
                 var newCustomer = _customerRepositroy.UpdateCustomer(customer);
                 _ilogger.LogInformation("Customer data saved to db succesfully");
                 return newCustomer;

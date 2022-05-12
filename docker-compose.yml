@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  bankmanagementsystem:
+    image: ${DOCKER_REGISTRY-}bankmanagementsystem
+    build:
+      context: .
+      dockerfile: BankManagementSystem/Dockerfile
+
+  mssql-server:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
