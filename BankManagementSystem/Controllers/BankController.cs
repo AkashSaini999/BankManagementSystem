@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using BankManagementSystem.Helpers;
 using BankManagementSystem.Interface;
 using BankManagementSystem.Data;
+using BankManagementSystem.Extensions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -37,9 +38,9 @@ namespace BankManagementSystem.Controllers
                 var result = _customerService.CreateNewCustomer(customer);
                 return Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new BankManagemnetException(ex.Message);
             }
         }
 
@@ -52,9 +53,9 @@ namespace BankManagementSystem.Controllers
                 var result = _customerService.UpdateCustomerInfo(customer);
                 return Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new BankManagemnetException(ex.Message);
             }
         }
         [HttpPost]
@@ -66,9 +67,9 @@ namespace BankManagementSystem.Controllers
                 var result = _loanService.ApplyLoan(loan);
                 return Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new BankManagemnetException(ex.Message);
             }
         }
 

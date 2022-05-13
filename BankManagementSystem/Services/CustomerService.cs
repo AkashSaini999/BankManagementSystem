@@ -1,4 +1,5 @@
 ﻿using BankManagementSystem.Data;
+using BankManagementSystem.Extensions;
 using BankManagementSystem.Interface;
 using BankManagementSystem.Repository;
 using Microsoft.Extensions.Logging;
@@ -29,7 +30,7 @@ namespace BankManagementSystem.Services
             catch(Exception ex)
             {
                 _ilogger.LogError(ex.Message);
-                throw ex;
+                throw new BankManagemnetException(ex.Message);
             }
             
         }
@@ -54,7 +55,7 @@ namespace BankManagementSystem.Services
             catch (Exception ex)
             {
                 _ilogger.LogError(ex.Message);
-                throw ex;
+                throw new BankManagemnetException(ex.Message);
             }
         }
 

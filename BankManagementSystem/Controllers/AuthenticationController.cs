@@ -1,4 +1,5 @@
-﻿using BankManagementSystem.Interface;
+﻿using BankManagementSystem.Extensions;
+using BankManagementSystem.Interface;
 using BankManagementSystem.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,7 @@ namespace BankManagementSystem.Controllers
                 }
                
             }
-            catch (Exception ex)
+            catch (BankManagemnetException ex)
             {
                 throw ex;
             }
