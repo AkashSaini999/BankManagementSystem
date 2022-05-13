@@ -58,7 +58,7 @@ namespace BankManagementSystem
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           // DatabaseManagementService.MigrationInitialisation(app);
+            DatabaseManagementService.MigrationInitialisation(app);
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             if (env.IsDevelopment() || env.IsProduction())
             {
